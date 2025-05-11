@@ -1,0 +1,31 @@
+import pandas as pd
+
+# Load chat log CSV
+df = pd.read_csv("chat_logs.csv", parse_dates=["timestamp"])
+
+# Basic stats
+print("🔍 Basic Overview:")
+print(df.head())
+
+# 1. Average response time
+avg_response = df['response_time_sec'].mean()
+print(f"\n⏱️ Average Agent Response Time: {avg_response:.2f} seconds")
+
+# 2. Chat volume by hour
+df['hour'] = df['timestamp'].dt.hour
+volume_by_hour = df.groupby('hour').size()
+print("\n📊 Chat Volume by Hour:")
+print(volume_by_hour)
+
+# 3. Top frequent phrases (very simple keyword frequency)
+from collections import Counter
+all_messages = " ".join(df['message'].dropna().str.lower()).split()
+common_words = Counter(all_messages).most_common(5)
+print("\n🗣️ Most Common Words in Chats:")
+for word, freq in common_words:
+    print(f"{word}: {freq} times")
+
+# 4. Agent performance
+performance = df.groupby('agent')['response_time_sec'].mean().sort_values()
+print("\n👨‍💻 Agent Performance (Avg. Response Time):")
+print(performance)
