@@ -1,0 +1,19 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Good day"],
+      "responses": ["Hello! How can I assist you today?", "Hi there!"]
+    },
+    {
+      "tag": "order_status",
+      "patterns": ["Where is my order?", "Order status", "Track my package"],
+      "responses": ["Can you please provide your order ID?", "Sure, I can help with that. What's your order number?"]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you", "Goodbye"],
+      "responses": ["Goodbye! Have a great day!", "See you soon!"]
+    }
+  ]
+}
